@@ -1,5 +1,5 @@
 # ricmoo_underhand_solidity
-Richard Moore's 2nd place entry in 2017 Underhand Solidity contest
+Richard Moore's 2nd place winning entry in the 2017 Underhand Solidity contest
 
 See:
 
