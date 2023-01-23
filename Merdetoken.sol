@@ -65,7 +65,7 @@ contract Merdetoken {
      *  Create a new instance of the Merdetoken, with a given presale
      *  duration.
      */
-    function Merdetoken(uint256 duration) payable {
+    constructor(uint256 duration) payable public {
 
         // Set the ICO owner
         owner = msg.sender;
@@ -84,7 +84,7 @@ contract Merdetoken {
      *  After the presale, the ICO owner may withdraw Ether from the contract
      *  on a deferred schedule; once per week, the amount doubling each week.
      */
-    function withdraw(uint256 amount) {
+    function withdraw(uint256 amount) public {
 
         // Cannot withdraw during the presale
         if (now < activationDate) { throw; }
@@ -115,7 +115,7 @@ contract Merdetoken {
      *
      *  Exchange Ether for MDT tokens. This may not be called once the presale has ended.
      */
-    function () payable {
+    function () payable public {
 
         // Can only buy tokens during the presale
         if (now >= activationDate) { throw; }
@@ -131,15 +131,15 @@ contract Merdetoken {
      *   Mostly just copy and pasted from the de facto existing implmentation; changes marked
      */
 
-     function totalSupply() constant returns (uint totalSupply) {
+     function totalSupply() constant public returns (uint totalSupply) {
          return _totalSupply;
      }
 
-    function balanceOf(address _owner) constant returns (uint256 balance) {
+    function balanceOf(address _owner) constant public returns (uint256 balance) {
          return balances[_owner];
     }
 
-    function transfer(address _to, uint256 _amount) returns (bool success) {
+    function transfer(address _to, uint256 _amount) public returns (bool success) {
 
         // Cannot transfer tokens during the presale
         if (now < activationDate) { return false; }
@@ -152,7 +152,7 @@ contract Merdetoken {
         return true;
     }
 
-    function transferFrom(address _from, address _to, uint256 _amount) returns (bool success) {
+    function transferFrom(address _from, address _to, uint256 _amount) public returns (bool success) {
 
         // Cannot transfer tokens during the presale
         if (now < activationDate) { return false; }
@@ -168,7 +168,7 @@ contract Merdetoken {
         return true;
     }
 
-    function approve(address _spender, uint256 _amount) returns (bool success) {
+    function approve(address _spender, uint256 _amount) public returns (bool success) {
         allowed[msg.sender][_spender] = _amount;
         return true;
     }

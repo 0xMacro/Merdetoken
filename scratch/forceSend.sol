@@ -10,6 +10,10 @@ pragma solidity ^0.8.10;
 
 contract ForceSend {
 
+    receive() payable {
+
+    }
+
     /// @notice receives some ETH and immediately self destructs,
     /// force-sending the ETH to the recipient
     function selfDestructAndSend(address recipient) external payable {
